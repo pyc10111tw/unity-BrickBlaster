@@ -10,6 +10,7 @@ public class AimingScript : MonoBehaviour
     public float lineWidth = 0.05f;
 
     public LineRenderer line;
+    public LineRenderer lineRefl;
     private PlayerInputActions input;
     Vector2 aimPosition;
 
@@ -69,6 +70,7 @@ public class AimingScript : MonoBehaviour
 
         float minT = Mathf.Min(tTop, Mathf.Max(tLeft, tRight)); // tLeft 和 tRight 必為一正一負
 
+        // draw line
         line.SetPosition(0, transform.position);
         line.SetPosition(1, transform.position + (Vector3)dir * minT);
 
@@ -82,8 +84,11 @@ public class AimingScript : MonoBehaviour
             reflDir = new Vector2(-dir.x, dir.y);
         }
 
-        line.SetPosition(2, transform.position + (Vector3)reflDir * 20);
+        // draw reflection line
+        lineRefl.SetPosition(0, transform.position + (Vector3)dir * minT);
+        lineRefl.SetPosition(1, transform.position + (Vector3)reflDir * 20);
         
         line.startWidth = line.endWidth = lineWidth;
+        lineRefl.startWidth = lineRefl.endWidth = lineWidth;
     }
 }
