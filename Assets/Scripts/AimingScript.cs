@@ -68,7 +68,8 @@ public class AimingScript : MonoBehaviour
         float tRight = (rightWall - originX) / dir.x;
         //Debug.Log($"tTop: {tTop}, tLeft: {tLeft}, tRight: {tRight}");
 
-        float minT = Mathf.Min(tTop, Mathf.Max(tLeft, tRight)); // tLeft 和 tRight 必為一正一負
+        float minT = Mathf.Min(tTop, Mathf.Max(tLeft, tRight));
+        // tLeft 和 tRight 必為一正一負, but based on the restriction that not allowing player to aim downwards.
 
         Vector3 hitPoint = transform.position + (Vector3)dir * minT;
 
@@ -78,7 +79,7 @@ public class AimingScript : MonoBehaviour
 
         // reflection
         Vector2 reflDir;
-        if (minT == tTop)
+        if (Mathf.Abs(minT - tTop) < 0.001f)
         {
             reflDir = new Vector2(dir.x, -dir.y);
         } else
