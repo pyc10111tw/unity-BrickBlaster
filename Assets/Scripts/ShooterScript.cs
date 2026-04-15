@@ -12,7 +12,7 @@ public class ShooterScript : MonoBehaviour
 
     public LineRenderer line;
     public LineRenderer lineRefl;
-    private PlayerInputActions input;
+    public PlayerInputActions input;
     public GameObject ball;
 
     Vector2 aimPosition;
