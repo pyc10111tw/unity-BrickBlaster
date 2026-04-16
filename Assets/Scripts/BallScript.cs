@@ -5,7 +5,10 @@ public class BallScript : MonoBehaviour
     public float speed = 5f;
     public Rigidbody2D rb;
 
+    // scripts
+    public RoundManagerScript manager;
     public ShooterScript shooter;
+
     public Vector2 dir;
     public float leftWall = -4;
     public float rightWall = 4;
@@ -15,17 +18,19 @@ public class BallScript : MonoBehaviour
     public float timeToReachShooter = 1f;
     public bool ballIsAlive = true;
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        shooter = GameObject.FindGameObjectWithTag("Shooter").GetComponent<ShooterScript>();
+        //shooter = GameObject.FindGameObjectWithTag("Shooter").GetComponent<ShooterScript>();
+        manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<RoundManagerScript>();
 
-        dir = shooter.direction;
-        leftWall = shooter.leftWall;
-        rightWall = shooter.rightWall;
-        topWall = shooter.topWall;
+        dir = manager.direction;
+        leftWall = manager.leftWall;
+        rightWall = manager.rightWall;
+        topWall = manager.topWall;
 
-        shooterPos = shooter.transform.position;
+        shooterPos = manager.shooterPos;
         transform.position = shooterPos;
     }
 
@@ -54,19 +59,20 @@ public class BallScript : MonoBehaviour
         //if (transform.position.y <= shooterPos.y-0.001f || !ballIsAlive)
         if (transform.position.y < shooterPos.y || !ballIsAlive)
         {
-            Debug.Log("碰到底線");
+            //Debug.Log("碰到底線");
             ballIsAlive = false;
 
             dir = (Vector2)(transform.position - shooterPos).normalized;
             float speed = Vector2.Distance(transform.position, shooterPos) / timeToReachShooter;
             rb.MovePosition(rb.position - dir * speed * Time.fixedDeltaTime);
-            Debug.Log("moved");
+            //Debug.Log("moved");
             
             // Destroy
             if (Vector2.Distance(transform.position, shooterPos) < 0.01f)
             {
                 Destroy(gameObject);
-                Debug.Log("Object Destroyed");
+                manager.activeBalls --;
+                //Debug.Log("Object Destroyed");
             }
         }
     }

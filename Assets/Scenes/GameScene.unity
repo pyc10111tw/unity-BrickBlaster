@@ -1154,6 +1154,37 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: ba01e82f3b17d4b4c9034773e418bab5, type: 3}
+--- !u!1 &963686692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 963686693}
+  m_Layer: 0
+  m_Name: Round Manager
+  m_TagString: Manager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &963686693
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963686692}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.67304, y: -4.46948, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &978050459
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1227,7 +1258,7 @@ GameObject:
   - component: {fileID: 1078495573}
   - component: {fileID: 1078495574}
   m_Layer: 0
-  m_Name: Ball Shooter
+  m_Name: Shooter
   m_TagString: Shooter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1241,16 +1272,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1078495571}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -7, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1476216667}
   - {fileID: 1745880317}
-  - {fileID: 1261857883}
-  - {fileID: 1091975289}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1318547903}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1078495573
 MonoBehaviour:
@@ -1391,7 +1420,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1078495572}
+  m_Father: {fileID: 1318547903}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1261857881
 GameObject:
@@ -1482,7 +1511,7 @@ Transform:
   m_LocalScale: {x: 0.5796, y: 0.7727, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1078495572}
+  m_Father: {fileID: 1318547903}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1283267157
 PrefabInstance:
@@ -1544,6 +1573,40 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: ba01e82f3b17d4b4c9034773e418bab5, type: 3}
+--- !u!1 &1318547902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1318547903}
+  m_Layer: 0
+  m_Name: Ball Shooter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1318547903
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318547902}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1078495572}
+  - {fileID: 1261857883}
+  - {fileID: 1091975289}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1476216665
 GameObject:
   m_ObjectHideFlags: 0
@@ -1897,8 +1960,9 @@ SceneRoots:
   - {fileID: 2951862127707886461}
   - {fileID: 19589064}
   - {fileID: 221761719}
-  - {fileID: 1078495572}
+  - {fileID: 1318547903}
   - {fileID: 1283267157}
   - {fileID: 82390045}
   - {fileID: 781610080}
   - {fileID: 978050459}
+  - {fileID: 963686693}

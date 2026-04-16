@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Shooter
+  - Manager
   layers:
   - Default
   - TransparentFX

@@ -15,6 +15,9 @@ public class ShooterScript : MonoBehaviour
     public PlayerInputActions input;
     public GameObject ball;
 
+    public RoundManagerScript manager;
+    public int ballsToShoot = 1;
+
     Vector2 aimPosition;
 
     void Awake()
@@ -36,7 +39,8 @@ public class ShooterScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<RoundManagerScript>();
+        ballsToShoot = manager.ballsToShoot;
     }
 
     // Update is called once per frame
@@ -56,6 +60,7 @@ public class ShooterScript : MonoBehaviour
             direction.y = 0.3f; // limit the angle
         }
         //Debug.Log(direction);
+        manager.direction = direction;
 
         drawAimLine(direction);
 
@@ -104,9 +109,15 @@ public class ShooterScript : MonoBehaviour
 
     void onShoot(InputAction.CallbackContext context)
     {
+        manager.shooterPos = transform.position;
         // shoot
         //Debug.Log("Shoot!");
         //ball.SetActive(true);
+
+        //for (int i=0; i<ballsToShoot; i++)
         Instantiate(ball, transform.position, transform.rotation);
+        manager.activeBalls ++;
+        
+        //gameObject.SetActive(false);
     }
 }
