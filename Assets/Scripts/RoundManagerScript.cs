@@ -5,8 +5,8 @@ public class RoundManagerScript : MonoBehaviour
     public enum Gamestate {
         Aiming,
         Shooting, 
-        BallMoving
-        //BricksMoving
+        BallMoving,
+        BricksMoving
     } 
     public Gamestate state = Gamestate.Aiming;
 
@@ -15,6 +15,7 @@ public class RoundManagerScript : MonoBehaviour
 
     public Vector2 direction;
     public Vector3 shooterPos;
+    public float nextStartPosX = 0f;
     
     public float leftWall = -4;
     public float rightWall = 4;
@@ -22,6 +23,7 @@ public class RoundManagerScript : MonoBehaviour
 
     public LineRenderer line;
     public LineRenderer lineRefl;
+    public bool noBallsBack = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,12 +36,19 @@ public class RoundManagerScript : MonoBehaviour
     {
     }
 
-    public void ballDestroyed() {
+    public void ballDestroyed(float returnPosX) {
         activeBalls --;
+
+        if (noBallsBack) {
+            nextStartPosX = returnPosX;
+            noBallsBack = false;
+        }
 
         if (activeBalls == 0)
         {
-            startAiming();
+            //nextStartPosX = returnPosX;
+            //Debug.Log($"nextStartPosX: {nextStartPosX}");
+            startBricksMoving();
         }
     }
 
@@ -47,11 +56,14 @@ public class RoundManagerScript : MonoBehaviour
     public void startAiming()
     {
             state = Gamestate.Aiming;
-            Debug.Log("All balls destroyed, back to aiming");
+            //Debug.Log("All balls destroyed, back to aiming");
+
             // enable stuff
             GameObject.FindGameObjectWithTag("Shooter").GetComponent<ShooterScript>().input.Enable();
             line.enabled = true;
-            lineRefl.enabled = true;
+            lineRefl.enabled = true;            
+
+            noBallsBack = true;
     }
 
 
@@ -63,5 +75,15 @@ public class RoundManagerScript : MonoBehaviour
     public void startBallMoving()
     {
         state = Gamestate.BallMoving;
+    }
+
+    public void startBricksMoving()
+    {
+        state = Gamestate.BricksMoving;
+
+        // 移動磚塊?
+        
+        // reset shooter position
+
     }
 }

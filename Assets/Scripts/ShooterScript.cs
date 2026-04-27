@@ -22,6 +22,9 @@ public class ShooterScript : MonoBehaviour
     public float shootRate = 1f;
     private int ballsShot = 0;
 
+    private float nextStartPosX;
+    public float timeToReachNextPos = 0.3f;
+
     Vector2 aimPosition;
 
     void Awake()
@@ -74,6 +77,13 @@ public class ShooterScript : MonoBehaviour
         if (manager.state == Gamestate.Shooting)
         {
             shootBallsOverTime();
+        }
+        
+        if (manager.state == Gamestate.BricksMoving)
+        {
+            //Debug.Log("Resetting shooter position");
+            nextStartPosX = manager.nextStartPosX;
+            resetShooterPosition();
         }
     }
 
@@ -151,6 +161,20 @@ public class ShooterScript : MonoBehaviour
             //manager.state = Gamestate.BallMoving;
             manager.startBallMoving();
             //gameObject.SetActive(false);
+        }
+    }
+
+    void resetShooterPosition()
+    {
+        if (Mathf.Abs(transform.position.x - nextStartPosX) > 0.1f) {
+            Vector3 dir = new Vector3(nextStartPosX - transform.position.x, 0, 0).normalized;
+            float speed = Mathf.Abs(transform.position.x - nextStartPosX) / timeToReachNextPos;
+            //rb.MovePosition(rb.position - dir * speed * Time.fixedDeltaTime);
+            transform.position += dir * speed * Time.fixedDeltaTime;
+        } else
+        {
+            manager.startAiming(); // 暫時
+            //Debug.Log("Shooter position reset, back to aiming");
         }
     }
 }

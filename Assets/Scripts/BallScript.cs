@@ -17,6 +17,7 @@ public class BallScript : MonoBehaviour
     private Vector3 shooterPos;
     public float timeToReachShooter = 1f;
     public bool ballIsAlive = true;
+    private float returnPosX = 0f;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -60,6 +61,10 @@ public class BallScript : MonoBehaviour
         if (transform.position.y < shooterPos.y || !ballIsAlive)
         {
             //Debug.Log("碰到底線");
+            if (ballIsAlive) {
+                //Debug.Log("ball died at: " + transform.position);
+                returnPosX = transform.position.x;
+            }
             ballIsAlive = false;
 
             dir = (Vector2)(transform.position - shooterPos).normalized;
@@ -71,7 +76,7 @@ public class BallScript : MonoBehaviour
             if (Vector2.Distance(transform.position, shooterPos) < 0.01f)
             {
                 Destroy(gameObject);
-                manager.ballDestroyed();
+                manager.ballDestroyed(returnPosX);
                 //Debug.Log("Object Destroyed");
             }
         }
