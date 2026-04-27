@@ -453,5 +453,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da5f924bb194b5488ea73d265c884db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BrickScript
-  hp: 3
+  hp: 10
   hpText: {fileID: 5921010712592002834}

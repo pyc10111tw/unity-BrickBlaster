@@ -39,12 +39,29 @@ public class RoundManagerScript : MonoBehaviour
 
         if (activeBalls == 0)
         {
+            startAiming();
+        }
+    }
+
+    // when balls all are destroyed
+    public void startAiming()
+    {
             state = Gamestate.Aiming;
             Debug.Log("All balls destroyed, back to aiming");
             // enable stuff
             GameObject.FindGameObjectWithTag("Shooter").GetComponent<ShooterScript>().input.Enable();
             line.enabled = true;
             lineRefl.enabled = true;
-        }
+    }
+
+
+    public void startShooting()
+    {
+        state = Gamestate.Shooting;
+    }
+    
+    public void startBallMoving()
+    {
+        state = Gamestate.BallMoving;
     }
 }

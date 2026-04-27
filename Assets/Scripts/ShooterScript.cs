@@ -121,7 +121,8 @@ public class ShooterScript : MonoBehaviour
     {
         // shoot
         manager.shooterPos = transform.position;
-        manager.state = Gamestate.Shooting;
+        //manager.state = Gamestate.Shooting;
+        manager.startShooting();
         input.Disable();
         line.enabled = false;
         lineRefl.enabled = false;
@@ -131,7 +132,7 @@ public class ShooterScript : MonoBehaviour
 
     void shootBallsOverTime()
     {
-        Debug.Log($"Shooting balls... {ballsShot}/{ballsToShoot}");
+        //Debug.Log($"Shooting balls... {ballsShot}/{ballsToShoot}");
         if (ballsShot < ballsToShoot) // shoot
         {
             if (timer < shootRate) // not time to shoot next ball
@@ -147,7 +148,8 @@ public class ShooterScript : MonoBehaviour
         } else // finish shooting
         {
             ballsShot = 0;
-            manager.state = Gamestate.BallMoving;
+            //manager.state = Gamestate.BallMoving;
+            manager.startBallMoving();
             //gameObject.SetActive(false);
         }
     }
