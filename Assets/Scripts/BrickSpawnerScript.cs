@@ -42,5 +42,6 @@ public class BrickSpawnerScript : MonoBehaviour
             int idx = Random.Range(i, slots.Count);
             (slots[i], slots[idx]) = (slots[idx], slots[i]);
         }
+        Debug.Log(slots);
     }
 }
