@@ -32,6 +32,8 @@ public class BrickSpawnerScript : MonoBehaviour
 
     private void randomSpawnPos(int n) // n = number of bricks to spawn
     {
+        slots.Clear();
+
         for (int i=0; i<numberOfSlots; i++)
         {
             slots.Add(i);
@@ -42,6 +44,6 @@ public class BrickSpawnerScript : MonoBehaviour
             int idx = Random.Range(i, slots.Count);
             (slots[i], slots[idx]) = (slots[idx], slots[i]);
         }
-        Debug.Log(slots);
+        Debug.Log(string.Join(", ", slots));
     }
 }
