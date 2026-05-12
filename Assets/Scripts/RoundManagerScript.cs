@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class RoundManagerScript : MonoBehaviour
 {
@@ -31,6 +32,9 @@ public class RoundManagerScript : MonoBehaviour
 
     public bool noBallsBack = true;
     public int numberOfBricksToSpawn = 5;
+
+    public TextMeshProUGUI scoreText;
+    public int score = 10;
 
     // bricks
     public List<BrickScript> bricks = new List<BrickScript>();
@@ -103,6 +107,10 @@ public class RoundManagerScript : MonoBehaviour
         if (hitBottom)
         {
             gameOver();
+        } else
+        {
+            score += 1;
+            scoreText.text = score.ToString();
         }
 
         // spawn new row of bricks
