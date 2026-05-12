@@ -166,6 +166,7 @@ public class ShooterScript : MonoBehaviour
 
     void resetShooterPosition()
     {
+        // if (nextStartPosX <= leftWall) {nextStartPosX = leftWall + 0.2f;} // and then same for right wall
         if (Mathf.Abs(transform.position.x - nextStartPosX) > 0.1f) {
             Vector3 dir = new Vector3(nextStartPosX - transform.position.x, 0, 0).normalized;
             float speed = Mathf.Abs(transform.position.x - nextStartPosX) / timeToReachNextPos;
